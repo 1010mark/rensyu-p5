@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.js"></script>
+    <script>
+        const radius = 75;
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+        }
+        function draw() {
+            background(0);
+            const GradientRate = 255 / radius;
+            for(let r = radius; r > 0; r--){
+                noStroke();
+                //console.log(r,255-r)
+                fill(255-r*GradientRate);
+                circle(mouseX, mouseY, r);
+            }
+            for(let i = 0; i < 60; i++){
+                let DotPointX = mouseX + (random()-random()) * radius;
+                let DotPointY = mouseY + (random()-random()) * radius;
+                let DistanceBetweenCenterAndDot = Math.sqrt((DotPointX-mouseX)**2 + (DotPointY-mouseY)**2);
+                stroke(200*(255-DistanceBetweenCenterAndDot*GradientRate)/255);
+                point(DotPointX,DotPointY);
+            }
+            noStroke();
+            textSize(24);
+            fill(0);
+            text("Hello World!", width/2, height/2)
+        }
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+        }
+    </script>
+</head>
+
+<body class="m-0 p-0">
+</body>
+
+</html>
